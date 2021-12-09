@@ -1,0 +1,26 @@
+.boardContainer{
+    width: 80%;
+    margin: auto;
+border: 2px solid #000055;
+}
+
+.boardButtonContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.boardItemContainer{
+
+}
+
+.pageButton{
+    display: flex;
+    justify-content: space-around;
+}
+
+.centerButton{
+    width: 288px;
+    display: flex;
+    justify-content: center;
+}

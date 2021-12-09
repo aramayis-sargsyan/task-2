@@ -1,6 +1,8 @@
+import React from "react";
+import Button from "../button/button";
 import "./header.css"
 
-export interface headertype{
+export interface headerType{
     changeIsEdit:any
     changeEnterIsEdit:any
     changeName:any
@@ -11,7 +13,7 @@ export interface headertype{
 
 }
 
-export const Header = ({changeIsEdit,isEdit,data,changeName,changeSurName,changeAge,changeEnterIsEdit}:headertype) => {
+export const Header = ({changeIsEdit,isEdit,data,changeName,changeSurName,changeAge,changeEnterIsEdit}:headerType) => {
 return(
     <>
     <div className={"headerContainer"}>
@@ -46,10 +48,10 @@ return(
                 </div>
         }
 
-
-        <button className={"editDataButton"} onClick={changeIsEdit}>edit</button>
+        <Button handleOnClick={changeIsEdit} text={"edit"} style={{backgroundColor:"#9999ff",width:"50px",height:"194px"}} value={"headerButton"}/>
 
     </div>
+
     </>
 )
 }
