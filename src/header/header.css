@@ -1,11 +1,11 @@
 .headerContainer{
     display: flex;
     justify-content: center;
-    width: 80%;
     height: 234px;
-    border: 2px solid #000055;
-    background-color: #5555ff;
     margin: auto;
+    width: 1000px ;
+    border: 2px solid #000055 ;
+    background-color: #5555ff;
 }
 
 .dataContainer{
@@ -20,7 +20,6 @@
 
 .dataItemContainer{
     display: flex;
-
 }
 
 .data{
@@ -34,13 +33,5 @@
     padding-left: 5px;
 }
 
-.dataInput{
-    background-color: #bbbbff;
-    border:none;
-    width: 50%;
-    height: 46px;
-    text-align: left;
-    font-size: 25px;
-    margin: 5px;
-}
+
 

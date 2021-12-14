@@ -1,0 +1,10 @@
+.headerOpacity{
+    opacity: 0.5;
+}
+
+.popup{
+    position: fixed;
+    top: 2px;
+    left: 336px;
+}
+

@@ -1,0 +1,17 @@
+.loadingContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.userContainer{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width: 400px;}
+
+.user{
+    margin-top: 20px;
+    font-size: 20px;
+    color: #5555ff;
+}
