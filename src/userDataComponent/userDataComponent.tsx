@@ -29,6 +29,7 @@ export const UserData=()=>{
     let {id}=useParams()
 
     useEffect(() => {
+        console.log('aaaaaaaaaaaaaa')
         setLoading(true);
         fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
             .then((response) => response.json())

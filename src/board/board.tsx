@@ -25,9 +25,9 @@ export const Board = ({ openedItem, isOpened, changePage }: boardType) =>{
                 <p>KJFHAHFASHF aaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa gdddddddddddddd dddddddddddddddd ddddddddddddddd ddddddddddddd</p>
                 <div className={"pageButton"}>
                     <Button style={{backgroundColor:"#9999ff",width:"104px",height:"40px"}} text={"board2 >"} handleOnClick={(e:any)=>openedItem(e)} value={"button2"}/>
-                        <Link to={"/users"}  >
-                            <Button style={{backgroundColor:"#9999ff",width:"104px",height:"40px"}} text={"go Users"} handleOnClick={(e:any)=>changePage(e)} value={"button1"}/>
-                        </Link>
+                    <Link to={"/users"}>
+                        <Button style={{backgroundColor:"#9999ff",width:"104px",height:"40px"}} text={"go Users"} handleOnClick={()=>changePage("/users")} value={"button1"}/>
+                    </Link>
                 </div>
             </div>
             }
@@ -64,3 +64,4 @@ export const Board = ({ openedItem, isOpened, changePage }: boardType) =>{
 }
 
 export default Board
+

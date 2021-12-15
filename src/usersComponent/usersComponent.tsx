@@ -5,7 +5,7 @@ import "./usersComponent.css"
 import Button from "../button/button";
 
 export interface userType{
-    changeUserPath:(id:string)=>void
+    changeUserPath:(str:string)=>void
     key:string
 
 }
@@ -51,11 +51,9 @@ export const Users = ({changeUserPath,key}:userType) => {
                             {users.map((el) => {
                                 return (<div className={"element"}>
                                     <p className={"elementName"}>{el.name}</p>
-                                    <Link to={`/users/${el.id}`}>
-                                        <Button handleOnClick={() => changeUserPath(el.id)} text={`go User ${el.id}`}
+                                        <Button handleOnClick={() => changeUserPath(`/users/${el.id}`)} text={`go User ${el.id}`}
                                                 style={{backgroundColor: "#9999ff", width: "100px", height: "30px"}}
                                                 value={"goElement"}/>
-                                    </Link>
                                 </div>)
                             })}
                         </div>
