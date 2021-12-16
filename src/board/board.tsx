@@ -1,15 +1,19 @@
-import React, {useState} from "react";
 import Button from "../button/button";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import "./board.css"
 
 export interface boardType {
     openedItem: (e: any) => void;
-    changePage: (e: any) => void;
     isOpened: string;
 }
 
-export const Board = ({ openedItem, isOpened, changePage }: boardType) =>{
+export const Board = ({ openedItem, isOpened }: boardType) =>{
+    const history = useHistory()
+
+    const changePage = (str:string) => {
+        history.push(`${str}`);
+
+    };
 
     return(
                <div className={"boardContainer"} >
@@ -25,9 +29,7 @@ export const Board = ({ openedItem, isOpened, changePage }: boardType) =>{
                 <p>KJFHAHFASHF aaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa gdddddddddddddd dddddddddddddddd ddddddddddddddd ddddddddddddd</p>
                 <div className={"pageButton"}>
                     <Button style={{backgroundColor:"#9999ff",width:"104px",height:"40px"}} text={"board2 >"} handleOnClick={(e:any)=>openedItem(e)} value={"button2"}/>
-                    <Link to={"/users"}>
                         <Button style={{backgroundColor:"#9999ff",width:"104px",height:"40px"}} text={"go Users"} handleOnClick={()=>changePage("/users")} value={"button1"}/>
-                    </Link>
                 </div>
             </div>
             }

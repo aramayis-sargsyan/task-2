@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link ,useParams} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import { BallBeat } from 'react-pure-loaders';
 import "./usersComponent.css"
 import Button from "../button/button";
 
-export interface userType{
-    changeUserPath:(str:string)=>void
-    key:string
-
-}
-
-export const Users = ({changeUserPath,key}:userType) => {
+export const Users = () => {
     const [users, setUsers] = useState<{
         address:object
         company:object
@@ -23,6 +17,8 @@ export const Users = ({changeUserPath,key}:userType) => {
     }[]>([]);
     const [loading, setLoading] = useState<Boolean>(false);
 
+    console.log(78)
+
     useEffect(() => {
         setLoading(true);
         fetch("https://jsonplaceholder.typicode.com/users")
@@ -33,6 +29,13 @@ export const Users = ({changeUserPath,key}:userType) => {
             });
     }, []);
 
+    const history = useHistory()
+
+    const changeUserPath = (str:string) => {
+        history.push(`${str}`);
+
+    };
+
     return (
         <>
             {
@@ -41,11 +44,9 @@ export const Users = ({changeUserPath,key}:userType) => {
                         loading={true}/>
                     </div>:
                     <div>
-                        <Link to={"/"}>
-                            <Button handleOnClick={changeUserPath} text={"go Home"}
+                            <Button handleOnClick={() => changeUserPath("/")} text={"go Home"}
                                     style={{backgroundColor: "#9999ff", width: "100px", height: "30px"}}
                                     value={"goElement"}/>
-                        </Link>
 
                         <div className={"elementContainer"}>
                             {users.map((el) => {

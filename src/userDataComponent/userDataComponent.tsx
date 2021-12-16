@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { BallBeat } from 'react-pure-loaders';
-import {Link,useParams} from "react-router-dom";
+import { useHistory, useParams} from "react-router-dom";
 import Button from "../button/button";
 import "./userDataComponent.css"
 
@@ -26,10 +26,16 @@ export const UserData=()=>{
         website:"",
     });
     const [loading, setLoading] = useState<Boolean>(false);
-    let {id}=useParams()
+    console.log(778)
+    const history = useHistory()
 
+    const changeUserPath = (str:string) => {
+        history.push(`${str}`);
+
+    };
+    // @ts-ignore
+    let {id}=useParams()
     useEffect(() => {
-        console.log('aaaaaaaaaaaaaa')
         setLoading(true);
         fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
             .then((response) => response.json())
@@ -39,10 +45,6 @@ export const UserData=()=>{
             });
     }, []);
 
-
-    const foo = () => {
-    }
-
     return(
         <>
             {
@@ -51,11 +53,9 @@ export const UserData=()=>{
                         loading={true}/>
                     </div> :
                     <div>
-                        <Link to={"/users"}>
-                            <Button handleOnClick={foo} text={`go Users`}
+                            <Button handleOnClick={() => changeUserPath("/users")} text={`go Users`}
                                     style={{backgroundColor: "#9999ff", width: "100px", height: "30px"}}
                                     value={"goElement"}/>
-                        </Link>
 
                         <div className={"userContainer"}>
                             <p className={"user"}>ID: {users.id}</p>

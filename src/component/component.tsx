@@ -2,21 +2,15 @@ import React, { useState } from "react";
 import Header from "../header/header";
 import Board from "../board/board";
 import Users from "../usersComponent/usersComponent";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
+import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import UserData from "../userDataComponent/userDataComponent";
 import Popup from "../popup/popup";
-import { createBrowserHistory } from "history";
 import "./component.css"
-
-const history = createBrowserHistory();
 
 export const Component = () => {
     const [isEdit, setIsEdit] = useState<boolean>(true);
     const [data, setData] = useState<string[]>([]);
     const [isOpened, setIsOpened] = useState<string>("");
-
-
 
     const changeIsEdit = () => {
         setIsEdit(!isEdit);
@@ -53,85 +47,72 @@ export const Component = () => {
             setIsOpened(e.target.value);
         }
     };
-
-    const changePage = (str:string) => {
-            history.push(`${str}`,{ from: "users" });
-        console.log(history)
-
-    };
-
     return (
         <>
         {
-            // @ts-ignore
-            isEdit?<Router history={history} >
+            isEdit?<Router>
 
                 <Header
                     changeIsEdit={changeIsEdit}
                     data={data}
                 />
 
-                <Routes>
+                <Switch>
+
                     <Route
+                        exact
                         path="/"
-                        element={
-                            <Board
-                                openedItem={(e: any): void => openedItem(e)}
-                                isOpened={isOpened}
-                                changePage={(str)=>changePage(str)}
-                            />
-                        }
+                        component={() => (
+                            <Board openedItem={(e: any): void => openedItem(e)} isOpened={isOpened} />)}
                     />
 
-                    <Route path="/users" element={<Users changeUserPath={(str:string)=>changePage(str)} key={generateUniqueID()}/>}/>
+                    <Route
+                        exact
+                        path="/users"
+                        component={()=>( <Users />)}/>
 
                     <Route
                         path={`/users/:id`}
-                        element={
-                            <div>
-                                <UserData />
-                            </div>
-                        }
+                        component={()=>(<UserData />
+                        )}
                     />
 
-                </Routes>
+                    </Switch>
 
             </Router>:
                 <>
                     <div className={"headerOpacity"}>
-                    <Router >
+                        <Router>
 
-                        <Header
-                            changeIsEdit={changeIsEdit}
-                            data={data}
-                        />
-
-                        <Routes>
-                            <Route
-                                path="/"
-                                element={
-                                    <Board
-                                        openedItem={(e: any): void => openedItem(e)}
-                                        isOpened={isOpened}
-                                        changePage={(str)=>changePage(str)}
-                                    />
-                                }
+                            <Header
+                                changeIsEdit={changeIsEdit}
+                                data={data}
                             />
 
-                            <Route path="/users" element={<Users changeUserPath={(str:string)=>changePage(str)} key={generateUniqueID()}/>}/>
+                            <Switch>
+                                <Route
+                                    exact
+                                    path="/"
+                                    component={()=>(
+                                        <Board
+                                            openedItem={(e: any): void => openedItem(e)}
+                                            isOpened={isOpened}
+                                        />)}
+                                />
 
-                            <Route
-                                path={`/users/:id`}
-                                element={
-                                    <div>
-                                        <UserData />
-                                    </div>
-                                }
-                            />
+                                <Route
+                                    exact
+                                    path="/users"
+                                    component={()=>( <Users />)}/>
 
-                        </Routes>
+                                <Route
+                                    path={`/users/:id`}
+                                    component={()=>(<UserData />
+                                    )}
+                                />
+                            </Switch>
 
-                    </Router>
+                        </Router>
                     </div>
                         <div className={"popupContainer"} style={{top:`${window.innerHeight/2-117}px`, left:`${window.innerWidth/2-322}px`}}>
                         <Popup changeIsEdit={changeIsEdit} changeEnterIsEdit={changeEnterIsEdit} changeName={changeName}
@@ -144,3 +125,4 @@ export const Component = () => {
 };
 
 export default Component;
+
